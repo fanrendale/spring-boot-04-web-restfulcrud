@@ -1,9 +1,13 @@
 package com.xjf.springboot04webrestfulcrud.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -33,5 +37,26 @@ public class HelloController {
         map.put("hello","<h1>你好</h1>");
         map.put("users", Arrays.asList("zhangsan","<h1>lisi</h1>","wangwu"));
         return "success";
+    }
+
+    /**
+     * 用户登录
+     * @return
+     */
+    @PostMapping("/user/login")
+    public String login(@RequestParam("username") String username,
+                        @RequestParam("password") String password,
+                        Map<String,Object> map,
+                        HttpSession session){
+
+        if (!StringUtils.isEmpty(username) && "123456".equals(password)){
+            //登录成功
+            session.setAttribute("loginUser",username);
+            return "redirect:/main.html";
+        }else {
+            //登录失败
+            map.put("msg","用户名或密码错误");          //错误提示信息
+            return "login";
+        }
     }
 }
