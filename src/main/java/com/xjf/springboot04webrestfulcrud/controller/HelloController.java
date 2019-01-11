@@ -19,6 +19,8 @@ public class HelloController {
         return "index";
     }*/
 
+    /*这条注释测试git*/
+
     @RequestMapping("/hello")
     @ResponseBody
     public String hello(){
