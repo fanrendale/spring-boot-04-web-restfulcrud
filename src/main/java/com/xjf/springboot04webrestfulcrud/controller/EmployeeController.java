@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.Collection;
 
@@ -45,7 +47,7 @@ public class EmployeeController {
      * @return
      */
     @GetMapping("/emp")
-    public String toAdd(Model model){
+    public String toAddPage(Model model){
 
         //获取department信息
         Collection<Department> departments = departmentDao.getDepartments();
@@ -70,6 +72,39 @@ public class EmployeeController {
         //添加成功后跳转到员工列表
         //redirect:表示重定向到一个地址   /代表当前项目路径
         //forward:表示转发一个地址
+        return "redirect:/emps";
+    }
+
+    /**
+     * 到编辑页面
+     * @param id
+     * @return
+     */
+    @GetMapping("/emp/{id}")
+    public String toEditPage(@PathVariable("id") Integer id,Model model){
+        //根据id查找员工信息
+        Employee employee = employeeDao.get(id);
+        model.addAttribute("emp",employee);
+
+        //获取department信息
+        Collection<Department> departments = departmentDao.getDepartments();
+        model.addAttribute("depts",departments);
+
+        //添加和编辑页面二合一
+        return "emp/add";
+    }
+
+    /**
+     * 修改员工信息
+     * @param employee
+     * @return
+     */
+    @PutMapping("/emp")
+    public String updateEmployee(Employee employee){
+        //进行修改
+        employeeDao.save(employee);
+
+        //重定向到列表页面
         return "redirect:/emps";
     }
 }
