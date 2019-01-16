@@ -34,7 +34,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
         //  "/**"对所有请求有效   并且不拦截访问登录的请求和发起登录的请求
         //springboot已经做好的静态资源的映射，此时不需要再配置静态资源的拦截
         registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").
-                excludePathPatterns("/","/index.html","/user/login");
+                excludePathPatterns("/","/index.html","/user/login","/**/*.js","/**/*.css","/**/*.svg");
     }
 
     /**
