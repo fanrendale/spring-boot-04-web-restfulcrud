@@ -1,5 +1,6 @@
 package com.xjf.springboot04webrestfulcrud.controller;
 
+import com.xjf.springboot04webrestfulcrud.exception.UserNotExistsException;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,10 @@ public class HelloController {
 
     @RequestMapping("/hello")
     @ResponseBody
-    public String hello(){
+    public String hello(@RequestParam("user") String user) throws UserNotExistsException {
+        if ("xjf".equals(user)){
+            throw new UserNotExistsException();
+        }
         return "Hello World!";
     }
 
