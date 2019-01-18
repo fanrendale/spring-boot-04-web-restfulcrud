@@ -2,20 +2,36 @@ package com.xjf.springboot04webrestfulcrud.config;
 
 import com.xjf.springboot04webrestfulcrud.componet.LoginHandlerInterceptor;
 import com.xjf.springboot04webrestfulcrud.componet.MyLocaleResolver;
+import org.springframework.boot.web.server.ConfigurableWebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
 
 /**
  * @author xjf
  * @date 2019/1/8 9:31
  */
+
+//使用WebMvcConfigurerAdapter可以来扩展SpringMVC的功能
+//@EnableWebMvc       不要接管SpringMVC
 @Configuration
 public class MyMvcConfig implements WebMvcConfigurer {
+
+    //定制嵌入式的Servlet容器相关的规则
+    @Bean
+    public WebServerFactoryCustomizer<ConfigurableWebServerFactory> webServerFactoryCustomizer(){
+        return new WebServerFactoryCustomizer<ConfigurableWebServerFactory>() {
+            @Override
+            public void customize(ConfigurableWebServerFactory factory) {
+                factory.setPort(8082);
+            }
+        };
+    }
+
+
+
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         //浏览器发送/atguigu来到success页面
