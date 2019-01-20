@@ -19,18 +19,6 @@ import org.springframework.web.servlet.config.annotation.*;
 @Configuration
 public class MyMvcConfig implements WebMvcConfigurer {
 
-    //定制嵌入式的Servlet容器相关的规则
-    @Bean
-    public WebServerFactoryCustomizer<ConfigurableWebServerFactory> webServerFactoryCustomizer(){
-        return new WebServerFactoryCustomizer<ConfigurableWebServerFactory>() {
-            @Override
-            public void customize(ConfigurableWebServerFactory factory) {
-                factory.setPort(8082);
-            }
-        };
-    }
-
-
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -49,8 +37,8 @@ public class MyMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         //  "/**"对所有请求有效   并且不拦截访问登录的请求和发起登录的请求
         //springboot已经做好的静态资源的映射，此时不需要再配置静态资源的拦截
-        registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").
-                excludePathPatterns("/","/index.html","/user/login","/**/*.js","/**/*.css","/**/*.svg");
+//        registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").
+//                excludePathPatterns("/","/index.html","/user/login","/**/*.js","/**/*.css","/**/*.svg");
     }
 
     /**
