@@ -1,7 +1,5 @@
 package com.xjf.springboot04webrestfulcrud.controller;
 
-import com.xjf.springboot04webrestfulcrud.entities.Department;
-import com.xjf.springboot04webrestfulcrud.entities.Employee;
 import com.xjf.springboot04webrestfulcrud.exception.UserNotExistsException;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
