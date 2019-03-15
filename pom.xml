@@ -11,6 +11,7 @@
     <groupId>com.xjf</groupId>
     <artifactId>spring-boot-04-web-restfulcrud</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
     <name>spring-boot-04-web-restfulcrud</name>
     <description>Demo project for Spring Boot</description>
 
@@ -23,12 +24,19 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <!--排除Tomcat-->
-            <!--<exclusions>
+            <exclusions>
                 <exclusion>
                     <artifactId>spring-boot-starter-tomcat</artifactId>
                     <groupId>org.springframework.boot</groupId>
                 </exclusion>
-            </exclusions>-->
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
         </dependency>
 
         <!--引入其他的Servlet容器-->
@@ -73,6 +81,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <finalName>test</finalName>
     </build>
 
 </project>
