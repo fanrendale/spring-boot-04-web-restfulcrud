@@ -11,7 +11,7 @@
     <groupId>com.xjf</groupId>
     <artifactId>spring-boot-04-web-restfulcrud</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>spring-boot-04-web-restfulcrud</name>
     <description>Demo project for Spring Boot</description>
 
@@ -24,12 +24,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <!--排除Tomcat-->
-            <exclusions>
+            <!--<exclusions>
                 <exclusion>
                     <artifactId>spring-boot-starter-tomcat</artifactId>
                     <groupId>org.springframework.boot</groupId>
                 </exclusion>
-            </exclusions>
+            </exclusions>-->
         </dependency>
 
         <dependency>
