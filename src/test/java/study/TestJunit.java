@@ -13,7 +13,7 @@ public class TestJunit {
 
     @Test
     public void testAdd(){
-        String str = "Junit is working fine";
+        String str = "Junit is a working fine";
         assertEquals("Junit is a working fine",str);
     }
 }
